@@ -30,11 +30,12 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+    counter1 uses closure
   2. Which of the two uses a closure? How can you tell?
-  
+    counter1 uses closure, you can tell by how there is a function inside of a larger function scope versus counter2 is just one function 
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+
 */
 
 // counter1 code
@@ -64,8 +65,9 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    let num = Math.random(0,2); 
+    return num; 
 }
 
 
@@ -83,8 +85,27 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inning, num){
+  let homescore = 0; 
+  let awayscore = 0; 
+  let finalscore = {}; 
+  let home = true; 
+  for(let i = 0; i < num; i++)
+  {
+    if(home === true)
+    {
+      homescore += inning.callback; 
+      home = false;
+    }
+    else 
+    {
+      awayscore += inning.callback; 
+      home = true; 
+    }
+  }
+  finalscore.Home = homescore; 
+  finalscore.Away = awayscore; 
+  return finalscore; 
 }
 
 
@@ -101,8 +122,31 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inning) {
+  let obj = {}; 
+  let home = 0; 
+  let away = 0; 
+  let team = true; 
+  let rand = Math.random(0,1);
+  if(rand > .50)
+  {
+    team = true; 
+  } 
+  else 
+  {
+    team = false; 
+  }
+  if(team === true)
+  {
+    home += inning.callback; 
+  }
+  else
+  {
+    away += inning.callback; 
+  }
+  obj.Home = home; 
+  obj.Away = away; 
+  return(obj); 
 
 }
 
